@@ -1,414 +1,577 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Perth's Most Addictive Cinnamon Buns</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title>CinnaBun Perth – Cookie Shop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Google Font for nicer typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  <style>
+    :root {
+      --bg-pink: #ffe7f1;
+      --bg-hero: #fff5f8;
+      --accent: #ff6fa6;
+      --accent-dark: #e05588;
+      --choco: #4b2417;
+      --cream: #fff9f3;
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.12);
+    }
 
-        body {
-            font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: radial-gradient(circle at top, #ffe9d8 0, #fff7f0 40%, #fff 80%);
-            color: #3b2314;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        .page-wrapper {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 24px 16px 40px;
-        }
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #ffe7f1 0, #fff7f2 40%, #ffffff 85%);
+      color: var(--choco);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
 
-        header {
-            width: 100%;
-            max-width: 960px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 24px;
-        }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-        /* Logo area */
+    /* Layout shell */
+    .page-wrapper {
+      min-height: 100vh;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px 18px 40px;
+    }
 
-        .logo-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+    /* Header */
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+    }
 
-        /* Circular logo – text */
-        .logo-circle {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #c46b32, #8b4513);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-weight: 600;
-            font-size: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
-            overflow: hidden;
-        }
+    .logo-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-        /* If you have an actual logo image, use this class on your <img> */
-        .logo-circle img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            display: block;
-        }
+    .logo-circle {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 10%, #ffe7f1, #ff6fa6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 22px;
+      color: #ffffff;
+      box-shadow: 0 8px 20px rgba(255, 111, 166, 0.55);
+      overflow: hidden;
+    }
 
-        .brand-text {
-            display: flex;
-            flex-direction: column;
-        }
+    /* If using an image logo:
+       <div class="logo-circle">
+         <img src="logo.png" alt="CinnaBun Perth logo">
+       </div>
+    */
+    .logo-circle img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
 
-        .brand-name {
-            font-size: 20px;
-            font-weight: 600;
-        }
+    .brand-lines {
+      display: flex;
+      flex-direction: column;
+    }
 
-        .brand-tagline {
-            font-size: 13px;
-            color: #7c5a42;
-        }
+    .brand-name {
+      font-weight: 700;
+      font-size: 20px;
+    }
 
-        nav {
-            display: flex;
-            gap: 16px;
-            font-size: 14px;
-        }
+    .brand-tagline {
+      font-size: 13px;
+      color: #8a5a43;
+    }
 
-        nav a {
-            text-decoration: none;
-            color: #5c3a23;
-            padding: 6px 10px;
-            border-radius: 999px;
-            transition: background 0.2s, color 0.2s;
-        }
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 14px;
+    }
 
-        nav a:hover {
-            background: #5c3a23;
-            color: #fff;
-        }
+    .main-nav a {
+      padding: 6px 10px;
+      border-radius: 999px;
+      transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+    }
 
-        /* Hero card */
-        .hero {
-            width: 100%;
-            max-width: 960px;
-            background: #fffdf9;
-            border-radius: 24px;
-            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
-            padding: 28px 24px;
-            display: grid;
-            grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-            gap: 24px;
-            overflow: hidden;
-        }
+    .main-nav a:hover {
+      background: #ffffff;
+      color: var(--accent-dark);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    }
 
-        .hero-main-heading {
-            font-size: 30px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
+    /* Hero */
+    .hero {
+      background: var(--bg-hero);
+      border-radius: var(--radius-xl);
+      padding: 32px 28px;
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      gap: 28px;
+      overflow: hidden;
+      position: relative;
+    }
 
-        .hero-subheading {
-            font-size: 16px;
-            color: #7c5a42;
-            margin-bottom: 16px;
-        }
+    .hero-decor {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.35;
+      background:
+        radial-gradient(circle at 10% 0, rgba(255, 255, 255, 0.6) 0, transparent 55%),
+        radial-gradient(circle at 90% 100%, rgba(255, 214, 229, 0.7) 0, transparent 60%);
+      z-index: 0;
+    }
 
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: #fff2d5;
-            color: #8b4513;
-            border-radius: 999px;
-            padding: 4px 10px;
-            font-size: 12px;
-            margin-bottom: 12px;
-            font-weight: 500;
-        }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: contents;
+    }
 
-        .hero-list {
-            margin: 12px 0 16px;
-            padding-left: 18px;
-            font-size: 14px;
-        }
+    /* Left hero content */
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+    }
 
-        .hero-list li {
-            margin-bottom: 4px;
-        }
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      background: #ffffff;
+      color: var(--accent-dark);
+      padding: 4px 12px;
+      border-radius: 999px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+      width: fit-content;
+    }
 
-        .hero-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 8px;
-        }
+    .hero-pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
 
-        .btn-primary {
-            padding: 10px 18px;
-            border-radius: 999px;
-            border: none;
-            background: linear-gradient(135deg, #c46b32, #8b4513);
-            color: #fff;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            box-shadow: 0 10px 20px rgba(139, 69, 19, 0.3);
-            transition: transform 0.12s ease, box-shadow 0.12s ease;
-        }
+    .hero-title {
+      font-size: clamp(2.1rem, 3.1vw, 2.8rem);
+      line-height: 1.1;
+    }
 
-        .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 14px 26px rgba(139, 69, 19, 0.35);
-        }
+    .hero-highlight {
+      color: var(--accent-dark);
+    }
 
-        .btn-secondary {
-            padding: 10px 16px;
-            border-radius: 999px;
-            border: 1px solid #d7bba1;
-            background: #fffaf4;
-            color: #5c3a23;
-            font-weight: 500;
-            font-size: 14px;
-            cursor: pointer;
-            transition: background 0.12s, border-color 0.12s;
-        }
+    .hero-sub {
+      font-size: 15px;
+      color: #845440;
+      max-width: 420px;
+    }
 
-        .btn-secondary:hover {
-            background: #ffe9d8;
-            border-color: #c46b32;
-        }
+    .hero-points {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px 16px;
+      margin-top: 6px;
+      font-size: 13px;
+    }
 
-        /* Hero side with overlapping images */
+    .hero-points li::before {
+      content: "•";
+      margin-right: 6px;
+      color: var(--accent-dark);
+    }
 
-        .hero-side {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 10px;
+    }
 
-        .bun-stack {
-            position: relative;
-            width: 100%;
-            max-width: 320px;
-            height: 230px;
-        }
+    .btn-primary {
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 14px 30px rgba(224, 85, 136, 0.6);
+      transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+    }
 
-        .bun-card {
-            position: absolute;
-            width: 70%;
-            max-width: 230px;
-            background: radial-gradient(circle at top, #fff, #ffe0c7);
-            border-radius: 24px;
-            padding: 14px;
-            box-shadow: 0 16px 30px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.03);
+      box-shadow: 0 18px 38px rgba(224, 85, 136, 0.7);
+    }
 
-        .bun-card.primary {
-            top: 10%;
-            left: 10%;
-            z-index: 2;
-        }
+    .btn-ghost {
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(132, 84, 64, 0.25);
+      background: rgba(255, 255, 255, 0.7);
+      color: #5a3b2a;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.12s, border-color 0.12s;
+    }
 
-        .bun-card.secondary {
-            bottom: 5%;
-            right: 0;
-            transform: rotate(-6deg);
-            opacity: 0.9;
-            z-index: 1;
-        }
+    .btn-ghost:hover {
+      background: #ffffff;
+      border-color: var(--accent);
+    }
 
-        .bun-visual {
-            width: 100%;
-            aspect-ratio: 4 / 3;
-            border-radius: 16px;
-            background: conic-gradient(from 190deg, #f8e0c1, #f1b88a, #c26a35, #8b4513, #f8e0c1);
-            position: relative;
-            overflow: hidden;
-        }
+    .hero-meta {
+      margin-top: 8px;
+      font-size: 12px;
+      color: #8a5a43;
+    }
 
-        .icing {
-            position: absolute;
-            inset: 12% 10%;
-            border-radius: 999px;
-            background: #fff9f4;
-            box-shadow: 0 0 40px rgba(255, 255, 255, 0.6) inset;
-        }
+    /* Right hero visuals – overlapping cards */
+    .hero-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        .bun-card-title {
-            font-weight: 600;
-            margin: 10px 0 4px;
-            font-size: 15px;
-        }
+    .bun-stack {
+      position: relative;
+      width: 100%;
+      max-width: 340px;
+      height: 260px;
+    }
 
-        .bun-card-text {
-            font-size: 12px;
-            color: #7c5a42;
-            margin-bottom: 6px;
-        }
+    .bun-card {
+      position: absolute;
+      width: 72%;
+      max-width: 240px;
+      border-radius: var(--radius-lg);
+      background: var(--cream);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      padding: 12px 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
 
-        .bun-tag-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-bottom: 6px;
-        }
+    .bun-card-main {
+      top: 4%;
+      left: 6%;
+      transform: rotate(-5deg);
+      z-index: 2;
+    }
 
-        .tag {
-            font-size: 10px;
-            padding: 3px 7px;
-            border-radius: 999px;
-            background: #fffdf9;
-            border: 1px solid #f1d0b0;
-            color: #8b4513;
-        }
+    .bun-card-alt {
+      bottom: -2%;
+      right: -2%;
+      transform: rotate(6deg);
+      z-index: 1;
+      opacity: 0.96;
+      background: #fff8e9;
+    }
 
-        .bun-price {
-            font-size: 13px;
-            font-weight: 600;
-        }
+    .bun-image {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      height: 140px;
+      background: conic-gradient(
+        from 210deg,
+        #ffead5,
+        #ffc8a1,
+        #ff9b7c,
+        #f16c5b,
+        #8b4513,
+        #ffead5
+      );
+    }
 
-        .contact-strip {
-            max-width: 960px;
-            width: 100%;
-            margin-top: 24px;
-            font-size: 14px;
-            color: #5c3a23;
-            background: #fff8ec;
-            border-radius: 999px;
-            padding: 10px 16px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            overflow: hidden;
-        }
+    /* Simulated icing swirl */
+    .bun-icing {
+      position: absolute;
+      inset: 14% 12%;
+      border-radius: 999px;
+      background: radial-gradient(circle at 10% 0, #ffffff, #ffeef4);
+      box-shadow: 0 0 28px rgba(255, 255, 255, 0.8) inset;
+    }
 
-        .contact-strip span {
-            white-space: nowrap;
-        }
+    .sprinkle {
+      position: absolute;
+      width: 6px;
+      height: 14px;
+      border-radius: 999px;
+      background: #ff6fa6;
+      opacity: 0.75;
+    }
 
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 12px;
-            }
+    .sprinkle:nth-child(1) { top: 20%; left: 22%; transform: rotate(15deg); }
+    .sprinkle:nth-child(2) { top: 35%; right: 18%; background: #ffd25e; transform: rotate(-20deg); }
+    .sprinkle:nth-child(3) { bottom: 20%; left: 28%; background: #7dd6ff; transform: rotate(10deg); }
 
-            .hero {
-                grid-template-columns: 1fr;
-            }
+    .bun-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
 
-            .hero-side {
-                order: -1;
-            }
+    .bun-note {
+      font-size: 11px;
+      color: #86523a;
+    }
 
-            .page-wrapper {
-                padding: 18px 12px 32px;
-            }
+    .bun-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 2px;
+    }
 
-            .bun-stack {
-                height: 260px;
-            }
-        }
-    </style>
+    .tag {
+      font-size: 10px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid rgba(255, 182, 193, 0.7);
+      color: #8b2c54;
+    }
+
+    .bun-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      margin-top: 4px;
+    }
+
+    .price {
+      font-weight: 600;
+      color: #4b2417;
+    }
+
+    .mini-text {
+      font-size: 10px;
+      color: #93624a;
+    }
+
+    /* Contact strip */
+    .contact-strip {
+      margin-top: 22px;
+      border-radius: 999px;
+      background: #fff5ea;
+      padding: 10px 16px;
+      font-size: 13px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .contact-strip span {
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Responsive */
+    @media (max-width: 860px) {
+      .site-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
+
+      .main-nav {
+        font-size: 13px;
+        flex-wrap: wrap;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        order: -1;
+      }
+
+      .bun-stack {
+        max-width: 320px;
+        height: 260px;
+        margin: 0 auto 4px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .page-wrapper {
+        padding-inline: 14px;
+      }
+
+      .hero {
+        padding: 24px 18px;
+        border-radius: 24px;
+      }
+
+      .hero-points {
+        grid-template-columns: 1fr;
+      }
+
+      .bun-stack {
+        height: 240px;
+      }
+
+      .bun-card {
+        width: 78%;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="page-wrapper">
-        <header>
-            <div class="logo-wrapper">
-                <!-- Replace CB with your logo image if you have one:
-                     <div class="logo-circle"><img src="logo.png" alt="CinnaBun Perth logo"></div>
-                -->
-                <div class="logo-circle">CB</div>
-                <div class="brand-text">
-                    <div class="brand-name">CinnaBun Perth</div>
-                    <div class="brand-tagline">Soft. Sticky. Sweet.</div>
-                </div>
-            </div>
-
-            <nav>
-                <a href="#classic">Classic buns</a>
-                <a href="#mini">Mini buns</a>
-                <a href="#custom">Custom orders</a>
-            </nav>
-        </header>
-
-        <main class="hero">
-            <section>
-                <div class="badge">Perth's most addictive cinnamon buns</div>
-                <h1 class="hero-main-heading">Soft, warm cinnamon buns.</h1>
-                <p class="hero-subheading">Freshly baked, covered in creamy frosting, and dangerously moreish.</p>
-
-                <ul class="hero-list">
-                    <li>Soft, fluffy dough with a rich cinnamon swirl.</li>
-                    <li>Cream cheese frosting that melts into every bite.</li>
-                    <li>Mini buns perfect for parties, events, or late-night cravings.</li>
-                </ul>
-
-                <div class="hero-actions">
-                    <button class="btn-primary">Order a box</button>
-                    <button class="btn-secondary">See mini bun options</button>
-                </div>
-            </section>
-
-            <aside class="hero-side">
-                <div class="bun-stack">
-                    <div class="bun-card primary">
-                        <div class="bun-visual">
-                            <div class="icing"></div>
-                        </div>
-                        <div class="bun-card-title">Signature Cinnamon Bun Box</div>
-                        <p class="bun-card-text">Soft, sticky buns topped with cream cheese frosting.</p>
-                        <div class="bun-tag-row">
-                            <span class="tag">Best seller</span>
-                            <span class="tag">Baked same-day</span>
-                        </div>
-                        <div class="bun-price">Perfect for sharing.</div>
-                    </div>
-
-                    <div class="bun-card secondary">
-                        <div class="bun-visual">
-                            <div class="icing"></div>
-                        </div>
-                        <div class="bun-card-title">Mini Bun Assortment</div>
-                        <p class="bun-card-text">Tiny, fluffy buns ideal for events and gifts.</p>
-                        <div class="bun-tag-row">
-                            <span class="tag">Party favourite</span>
-                            <span class="tag">Bite-sized</span>
-                        </div>
-                        <div class="bun-price">Tiny. Fluffy. Dangerous.</div>
-                    </div>
-                </div>
-            </aside>
-        </main>
-
-        <div class="contact-strip">
-            <span>📞 Call: 0400 000 000</span>
-            <span>📧 Email: John.doe@mail.com</span>
-            <span>📍 Perth, WA</span>
+  <div class="page-wrapper">
+    <!-- Header with circular logo -->
+    <header class="site-header">
+      <div class="logo-block">
+        <!-- Replace “CB” with an <img> inside this div if you have a logo file -->
+        <div class="logo-circle">CB</div>
+        <div class="brand-lines">
+          <div class="brand-name">CinnaBun Perth</div>
+          <div class="brand-tagline">Soft. Sticky. Sweet.</div>
         </div>
+      </div>
+
+      <nav class="main-nav">
+        <a href="#menu">Menu</a>
+        <a href="#specials">Specials</a>
+        <a href="#about">About</a>
+        <a href="#order">Order Online</a>
+      </nav>
+    </header>
+
+    <!-- Hero section -->
+    <section class="hero">
+      <div class="hero-decor"></div>
+      <div class="hero-inner">
+        <!-- Left: text -->
+        <div class="hero-copy">
+          <div class="hero-pill">
+            <span class="hero-pill-dot"></span>
+            Perth’s most addictive cinnamon buns
+          </div>
+
+          <h1 class="hero-title">
+            Fresh, fun, <span class="hero-highlight">frosted</span> buns.
+          </h1>
+
+          <p class="hero-sub">
+            Soft, warm cinnamon buns baked daily, drenched in cream cheese frosting, and finished with playful sprinkles.
+          </p>
+
+          <ul class="hero-points">
+            <li>Same‑day baking for every box.</li>
+            <li>Mini buns for parties and events.</li>
+            <li>Hand‑rolled dough and rich cinnamon swirl.</li>
+            <li>Custom toppings and flavours on request.</li>
+          </ul>
+
+          <div class="hero-actions">
+            <button class="btn-primary" id="order-now">Order a box</button>
+            <button class="btn-ghost" id="view-menu">View today’s menu</button>
+          </div>
+
+          <p class="hero-meta">
+            Free delivery on orders over $40 within Perth metro.
+          </p>
+        </div>
+
+        <!-- Right: overlapping bun “images” -->
+        <div class="hero-visual">
+          <div class="bun-stack">
+            <!-- Main card -->
+            <article class="bun-card bun-card-main">
+              <div class="bun-image">
+                <div class="bun-icing"></div>
+                <!-- Decorative sprinkles inside icing -->
+                <span class="sprinkle"></span>
+                <span class="sprinkle"></span>
+                <span class="sprinkle"></span>
+              </div>
+              <div class="bun-title">Signature Cinnamon Box</div>
+              <div class="bun-note">6 mega buns with extra‑thick frosting.</div>
+              <div class="bun-tags">
+                <span class="tag">Best seller</span>
+                <span class="tag">Fresh today</span>
+              </div>
+              <div class="bun-footer">
+                <span class="price">$28 / box</span>
+                <span class="mini-text">Feeds 4–6 sweet tooths</span>
+              </div>
+            </article>
+
+            <!-- Secondary card -->
+            <article class="bun-card bun-card-alt">
+              <div class="bun-image">
+                <div class="bun-icing"></div>
+                <span class="sprinkle"></span>
+                <span class="sprinkle"></span>
+                <span class="sprinkle"></span>
+              </div>
+              <div class="bun-title">Mini Party Bites</div>
+              <div class="bun-note">24 bite‑size buns in assorted flavours.</div>
+              <div class="bun-tags">
+                <span class="tag">Party favourite</span>
+                <span class="tag">Kid‑approved</span>
+              </div>
+              <div class="bun-footer">
+                <span class="price">$36 / tray</span>
+                <span class="mini-text">Perfect for celebrations</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact strip -->
+    <div class="contact-strip" id="order">
+      <span>📞 <strong>Call:</strong> 0400 000 000</span>
+      <span>📧 <strong>Email:</strong> john.doe@mail.com</span>
+      <span>📍 <strong>Perth, WA</strong></span>
     </div>
+  </div>
 </body>
 </html>
