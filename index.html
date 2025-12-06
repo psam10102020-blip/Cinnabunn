@@ -229,4 +229,436 @@
     }
 
     .pill {
-      font
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(43,34,25,0.12);
+      background: rgba(255,255,255,0.86);
+      backdrop-filter: blur(8px);
+    }
+
+    .price-tag {
+      font-size: 13px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+
+    /* Right-side image card */
+    .hero-card {
+      border-radius: var(--radius-lg);
+      background: #fdf7f1;
+      box-shadow: 0 18px 48px rgba(0,0,0,0.16);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-image-wrap {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-image-wrap img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.02);
+    }
+
+    .hero-badge {
+      position: absolute;
+      left: 18px;
+      top: 18px;
+      padding: 7px 13px;
+      border-radius: 999px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,0.86);
+      backdrop-filter: blur(10px);
+      color: #6b5745;
+    }
+
+    .hero-footer {
+      padding: 14px 16px 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f6efe7;
+    }
+
+    .hero-footer span {
+      font-size: 13px;
+      color: #6b5745;
+    }
+
+    .hero-count {
+      border-radius: 999px;
+      padding: 6px 11px;
+      font-size: 11px;
+      background: #2b2219;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    /* Menu page */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .card {
+      border-radius: 18px;
+      padding: 12px 14px;
+      background: rgba(255,255,255,0.9);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .card-main {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .card-title {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .card-sub {
+      font-size: 11px;
+      color: #8c7763;
+    }
+
+    .card-price {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* Contact page */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 18px;
+      margin-top: 12px;
+      font-size: 13px;
+    }
+
+    .contact-block {
+      border-radius: 18px;
+      padding: 16px 16px 14px;
+      background: rgba(255,255,255,0.94);
+    }
+
+    .contact-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .contact-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #a78c72;
+    }
+
+    .contact-value {
+      font-weight: 500;
+    }
+
+    .hours-list {
+      margin-top: 8px;
+      font-size: 12px;
+      color: #6b5745;
+    }
+
+    .map-placeholder {
+      border-radius: 18px;
+      background: linear-gradient(135deg, #f5dcc0, #fcead7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(43,34,25,0.66);
+    }
+
+    /* Small footer */
+    .bottom-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: #a78c72;
+      margin-top: 12px;
+      padding-left: 2px;
+      padding-right: 2px;
+    }
+
+    .bottom-strip a {
+      color: #8c7763;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(140,119,99,0.3);
+      padding-bottom: 1px;
+    }
+
+    /* Responsive changes */
+    @media (max-width: 820px) {
+      .shell {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 18px 16px 16px;
+      }
+      .content-wrap {
+        margin-top: 18px;
+        border-radius: 20px;
+      }
+      .page {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 20px;
+        overflow-y: auto;
+      }
+      html, body {
+        overflow: hidden;
+      }
+    }
+
+    @media (max-width: 520px) {
+      nav {
+        gap: 12px;
+        font-size: 12px;
+      }
+      .cta-strip span {
+        display: none;
+      }
+      h1 {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="header">
+      <div class="logo">
+        <div class="logo-mark">C</div>
+        <span>Cinniminis</span>
+      </div>
+      <nav>
+        <button class="nav-link active" data-page="home">Home</button>
+        <button class="nav-link" data-page="menu">Menu</button>
+        <button class="nav-link" data-page="contact">Visit</button>
+      </nav>
+      <div class="cta-strip">
+        <span>Fresh tray in every 20 minutes.</span>
+        <button onclick="goToContact()">Pre‑order</button>
+      </div>
+    </header>
+
+    <main class="content-wrap">
+      <!-- HOME PAGE -->
+      <section class="page active" id="page-home">
+        <div>
+          <div class="eyebrow">Small batch · Big swirl energy</div>
+          <h1>Mini cinnamon buns, baked to order.</h1>
+          <p class="lead">
+            Cinniminis makes warm, bite‑sized cinnamon rolls with real butter,
+            slow‑proved dough, and a cloud‑soft vanilla cream cheese glaze.
+            Perfect for coffee breaks, gifting, or eating the whole tray solo.
+          </p>
+
+          <div class="pill-row">
+            <div class="pill">Classic glaze</div>
+            <div class="pill">Box of 6 • 12 • 24</div>
+            <div class="pill">Same‑day bake</div>
+          </div>
+
+          <div class="meta-row">
+            <div>
+              <div class="meta-label">From</div>
+              <div class="price-tag">
+                <span>Box of 6</span>
+                <span>·</span>
+                <span>$9.50</span>
+              </div>
+            </div>
+            <div>
+              <div class="meta-label">Pickup window</div>
+              <div>Mon – Sun · 8am – 4pm</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <div class="hero-image-wrap">
+            <!-- Use the image you sent me here -->
+            <img src="WhatsApp-Image-2025-12-05-at-22.48.14_1b03d7f3.jpg" alt="Cinniminis cinnamon rolls" />
+            <div class="hero-badge">House favorite</div>
+          </div>
+          <div class="hero-footer">
+            <span>Cinniminis with vanilla cream cheese frosting.</span>
+            <span class="hero-count">9 per tower</span>
+          </div>
+        </aside>
+      </section>
+
+      <!-- MENU PAGE -->
+      <section class="page" id="page-menu">
+        <div>
+          <div class="eyebrow">Menu</div>
+          <h1>Three sizes, same melt‑in‑your‑mouth swirl.</h1>
+          <p class="lead">
+            Every tray is baked in small batches and glazed while still warm.
+            Mix and match boxes or go all‑in on your favourite swirl.
+          </p>
+
+          <div class="grid">
+            <div class="card">
+              <div class="card-main">
+                <span class="card-title">Classic Cinniminis · 6 pc</span>
+                <span class="card-sub">Soft rolls, cinnamon sugar, vanilla cream cheese.</span>
+              </div>
+              <span class="card-price">$9.50</span>
+            </div>
+
+            <div class="card">
+              <div class="card-main">
+                <span class="card-title">Share Box · 12 pc</span>
+                <span class="card-sub">Perfect for offices, brunches, or movie nights.</span>
+              </div>
+              <span class="card-price">$17</span>
+            </div>
+
+            <div class="card">
+              <div class="card-main">
+                <span class="card-title">Party Tower · 24 pc</span>
+                <span class="card-sub">Stacked tower like the photo. Includes serving card.</span>
+              </div>
+              <span class="card-price">$32</span>
+            </div>
+
+            <div class="card">
+              <div class="card-main">
+                <span class="card-title">Extra glaze jar</span>
+                <span class="card-sub">For dipping, drizzling, or spoon‑eating.</span>
+              </div>
+              <span class="card-price">$3.50</span>
+            </div>
+          </div>
+
+          <p class="lead" style="margin-top:18px;">
+            Need something custom for an event? Add a note when you pre‑order and the
+            bakery will confirm within a few hours.
+          </p>
+        </div>
+
+        <aside class="hero-card">
+          <div class="hero-image-wrap">
+            <img src="WhatsApp-Image-2025-12-05-at-22.48.14_1b03d7f3.jpg" alt="Cinniminis menu display" />
+            <div class="hero-badge">Today’s batch</div>
+          </div>
+          <div class="hero-footer">
+            <span>Baked every morning in small batches.</span>
+            <span class="hero-count">Sell‑out by 3pm</span>
+          </div>
+        </aside>
+      </section>
+
+      <!-- CONTACT PAGE -->
+      <section class="page" id="page-contact">
+        <div>
+          <div class="eyebrow">Visit</div>
+          <h1>Warm buns, warmer welcome.</h1>
+          <p class="lead">
+            Swing by for a fresh tray, or place a pre‑order and
+            pick it up without waiting in line.
+          </p>
+
+          <div class="contact-grid">
+            <div class="contact-block">
+              <div class="contact-row">
+                <div>
+                  <div class="contact-label">Find us</div>
+                  <div class="contact-value">123 Cinnamon Street, Sweet City</div>
+                </div>
+              </div>
+              <div class="hours-list">
+                <p>Monday – Friday · 8:00am – 4:00pm</p>
+                <p>Saturday – Sunday · 9:00am – 3:00pm</p>
+              </div>
+              <div class="hours-list" style="margin-top:12px;">
+                <p><span class="contact-label">Order</span></p>
+                <p>Call / WhatsApp: +61 000 000 000</p>
+                <p>Instagram: @cinniminis</p>
+              </div>
+            </div>
+
+            <div class="contact-block map-placeholder">
+              Drop map / embed here
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <div class="hero-image-wrap">
+            <img src="WhatsApp-Image-2025-12-05-at-22.48.14_1b03d7f3.jpg" alt="Cinniminis store" />
+            <div class="hero-badge">Pickup ready</div>
+          </div>
+          <div class="hero-footer">
+            <span>Pre‑orders are held warm for 30 minutes.</span>
+            <span class="hero-count">Tap to pre‑order</span>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="bottom-strip">
+      <span>© <span id="year"></span> Cinniminis. Baked with real butter.</span>
+      <a href="mailto:hello@cinniminis.com">hello@cinniminis.com</a>
+    </footer>
+  </div>
+
+  <script>
+    const navLinks = document.querySelectorAll(".nav-link");
+    const pages = document.querySelectorAll(".page");
+
+    function setActive(pageId) {
+      pages.forEach(p => {
+        p.classList.toggle("active", p.id === "page-" + pageId);
+      });
+      navLinks.forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.page === pageId);
+      });
+    }
+
+    navLinks.forEach(btn => {
+      btn.addEventListener("click", () => setActive(btn.dataset.page));
+    });
+
+    function goToContact() {
+      setActive("contact");
+    }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
