@@ -20,9 +20,9 @@
             background: radial-gradient(circle at top, #ffe9d8 0, #fff7f0 40%, #fff 80%);
             color: #3b2314;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Layout */
         .page-wrapper {
             min-height: 100vh;
             display: flex;
@@ -40,13 +40,15 @@
             margin-bottom: 24px;
         }
 
-        /* Circular logo – works for img or text */
+        /* Logo area */
+
         .logo-wrapper {
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
+        /* Circular logo – text */
         .logo-circle {
             width: 64px;
             height: 64px;
@@ -59,14 +61,13 @@
             font-weight: 600;
             font-size: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+            overflow: hidden;
         }
 
-        /* If you have an actual image, drop it in here:
-           <img src="logo.png" alt="Logo" class="logo-img">
-        */
-        .logo-img {
-            width: 64px;
-            height: 64px;
+        /* If you have an actual logo image, use this class on your <img> */
+        .logo-circle img {
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
             object-fit: cover;
             display: block;
@@ -117,6 +118,7 @@
             display: grid;
             grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
             gap: 24px;
+            overflow: hidden;
         }
 
         .hero-main-heading {
@@ -196,7 +198,8 @@
             border-color: #c46b32;
         }
 
-        /* Hero image / side content */
+        /* Hero side with overlapping images */
+
         .hero-side {
             position: relative;
             display: flex;
@@ -204,13 +207,36 @@
             justify-content: center;
         }
 
-        .bun-card {
+        .bun-stack {
+            position: relative;
             width: 100%;
-            max-width: 280px;
+            max-width: 320px;
+            height: 230px;
+        }
+
+        .bun-card {
+            position: absolute;
+            width: 70%;
+            max-width: 230px;
             background: radial-gradient(circle at top, #fff, #ffe0c7);
             border-radius: 24px;
-            padding: 16px;
+            padding: 14px;
             box-shadow: 0 16px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .bun-card.primary {
+            top: 10%;
+            left: 10%;
+            z-index: 2;
+        }
+
+        .bun-card.secondary {
+            bottom: 5%;
+            right: 0;
+            transform: rotate(-6deg);
+            opacity: 0.9;
+            z-index: 1;
         }
 
         .bun-visual {
@@ -233,25 +259,25 @@
         .bun-card-title {
             font-weight: 600;
             margin: 10px 0 4px;
-            font-size: 16px;
+            font-size: 15px;
         }
 
         .bun-card-text {
-            font-size: 13px;
+            font-size: 12px;
             color: #7c5a42;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .bun-tag-row {
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .tag {
-            font-size: 11px;
-            padding: 4px 8px;
+            font-size: 10px;
+            padding: 3px 7px;
             border-radius: 999px;
             background: #fffdf9;
             border: 1px solid #f1d0b0;
@@ -259,7 +285,7 @@
         }
 
         .bun-price {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
         }
 
@@ -276,13 +302,13 @@
             flex-wrap: wrap;
             gap: 10px;
             justify-content: center;
+            overflow: hidden;
         }
 
         .contact-strip span {
             white-space: nowrap;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
@@ -301,6 +327,10 @@
             .page-wrapper {
                 padding: 18px 12px 32px;
             }
+
+            .bun-stack {
+                height: 260px;
+            }
         }
     </style>
 </head>
@@ -308,7 +338,9 @@
     <div class="page-wrapper">
         <header>
             <div class="logo-wrapper">
-                <!-- If you have an image, use <img src="your-logo.png" class="logo-img"> instead of the text logo below -->
+                <!-- Replace CB with your logo image if you have one:
+                     <div class="logo-circle"><img src="logo.png" alt="CinnaBun Perth logo"></div>
+                -->
                 <div class="logo-circle">CB</div>
                 <div class="brand-text">
                     <div class="brand-name">CinnaBun Perth</div>
@@ -342,18 +374,32 @@
             </section>
 
             <aside class="hero-side">
-                <div class="bun-card">
-                    <div class="bun-visual">
-                        <div class="icing"></div>
+                <div class="bun-stack">
+                    <div class="bun-card primary">
+                        <div class="bun-visual">
+                            <div class="icing"></div>
+                        </div>
+                        <div class="bun-card-title">Signature Cinnamon Bun Box</div>
+                        <p class="bun-card-text">Soft, sticky buns topped with cream cheese frosting.</p>
+                        <div class="bun-tag-row">
+                            <span class="tag">Best seller</span>
+                            <span class="tag">Baked same-day</span>
+                        </div>
+                        <div class="bun-price">Perfect for sharing.</div>
                     </div>
-                    <div class="bun-card-title">Signature Cinnamon Bun Box</div>
-                    <p class="bun-card-text">A tray of soft, sticky buns topped with a generous swirl of cream cheese frosting.</p>
-                    <div class="bun-tag-row">
-                        <span class="tag">Best seller</span>
-                        <span class="tag">Baked same-day</span>
-                        <span class="tag">Locally made</span>
+
+                    <div class="bun-card secondary">
+                        <div class="bun-visual">
+                            <div class="icing"></div>
+                        </div>
+                        <div class="bun-card-title">Mini Bun Assortment</div>
+                        <p class="bun-card-text">Tiny, fluffy buns ideal for events and gifts.</p>
+                        <div class="bun-tag-row">
+                            <span class="tag">Party favourite</span>
+                            <span class="tag">Bite-sized</span>
+                        </div>
+                        <div class="bun-price">Tiny. Fluffy. Dangerous.</div>
                     </div>
-                    <div class="bun-price">Perfect for sharing, dangerous alone.</div>
                 </div>
             </aside>
         </main>
