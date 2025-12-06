@@ -7,25 +7,19 @@
   <style>
     :root {
       --bg: #f6efe7;
-      --accent: #f3d1a9;
       --text: #2b2219;
       --white: #ffffff;
-      --shadow: 0 16px 40px rgba(0,0,0,0.12);
-      --radius-lg: 22px;
-      --transition-fast: 220ms ease-out;
+      --shadow: 0 18px 40px rgba(0,0,0,0.16);
+      --radius-lg: 24px;
+      --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     html, body {
       height: 100%;
       overflow: hidden;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-                   "Helvetica Neue", Arial, sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
     }
@@ -36,37 +30,34 @@
       justify-content: center;
     }
 
-    /* Layout shell */
     .shell {
-      width: min(1120px, 100vw - 40px);
-      height: min(680px, 100vh - 40px);
+      width: min(1100px, 100vw - 28px);
+      height: min(640px, 100vh - 28px);
       background: var(--white);
-      border-radius: 32px;
+      border-radius: 28px;
       box-shadow: var(--shadow);
-      padding: 26px 32px 32px;
+      padding: 18px 22px 22px;
       display: flex;
       flex-direction: column;
-      position: relative;
       overflow: hidden;
     }
 
-    /* Header */
+    /* header */
     .header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 32px;
-      z-index: 2;
+      gap: 20px;
     }
 
     .logo {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      font-size: 14px;
+      font-size: 13px;
     }
 
     .logo-mark {
@@ -83,130 +74,143 @@
 
     nav {
       display: flex;
-      gap: 20px;
-      font-size: 14px;
+      gap: 16px;
+      font-size: 13px;
       text-transform: uppercase;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.15em;
     }
 
     nav button {
-      appearance: none;
       border: none;
       background: transparent;
       color: #8c7763;
-      padding: 6px 0;
+      padding: 4px 0;
       cursor: pointer;
       position: relative;
-      transition: color var(--transition-fast);
+      transition: color 200ms ease-out;
     }
 
     nav button::after {
       content: "";
       position: absolute;
       left: 0;
-      bottom: -4px;
+      bottom: -3px;
       width: 0;
       height: 2px;
       border-radius: 999px;
       background: #2b2219;
-      transition: width var(--transition-fast);
+      transition: width 260ms var(--ease-soft);
     }
 
-    nav button.active {
-      color: #2b2219;
-    }
-
-    nav button.active::after {
-      width: 100%;
-    }
+    nav button.active { color: #2b2219; }
+    nav button.active::after { width: 100%; }
 
     .cta-strip {
       display: flex;
-      gap: 12px;
       align-items: center;
+      gap: 8px;
       font-size: 12px;
+      white-space: nowrap;
     }
 
-    .cta-strip span {
-      color: #8c7763;
-    }
+    .cta-strip span { color: #8c7763; }
 
     .cta-strip button {
       border-radius: 999px;
       border: none;
-      padding: 8px 16px;
-      font-size: 12px;
+      padding: 7px 14px;
+      font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.12em;
       background: #2b2219;
       color: #fff;
       cursor: pointer;
-      transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+      transition: transform 180ms ease-out, box-shadow 180ms ease-out, background 180ms ease-out;
+      box-shadow: 0 10px 22px rgba(0,0,0,0.18);
     }
 
     .cta-strip button:hover {
-      background: #4a3625;
       transform: translateY(-1px);
-      box-shadow: 0 14px 32px rgba(0,0,0,0.22);
+      box-shadow: 0 14px 28px rgba(0,0,0,0.22);
+      background: #433123;
     }
 
-    /* Main content area */
+    /* content */
     .content-wrap {
       flex: 1;
-      display: flex;
-      margin-top: 26px;
+      margin-top: 14px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #fdf4ea, #f8e1c7);
       position: relative;
       overflow: hidden;
-      border-radius: 26px;
-      background: linear-gradient(135deg, #fdf4ea, #f8e1c7);
+      display: flex;
     }
 
     .page {
       position: absolute;
       inset: 0;
-      padding: 26px 26px 26px 26px;
+      padding: 18px 18px;
       display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-      gap: 24px;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);  /* bigger right island */
+      column-gap: 18px;
+      row-gap: 14px;
       opacity: 0;
-      transform: translateX(40px) translateY(10px);
       pointer-events: none;
-      transition: opacity 340ms ease-out, transform 340ms ease-out;
+      transform: translateX(18px) translateY(6px) scale(0.98);
+      transition:
+        opacity 360ms var(--ease-soft),
+        transform 360ms var(--ease-soft);
     }
 
     .page.active {
       opacity: 1;
-      transform: translateX(0) translateY(0);
       pointer-events: auto;
+      transform: translateX(0) translateY(0) scale(1);
     }
 
-    /* Typography */
     .eyebrow {
       text-transform: uppercase;
-      letter-spacing: 0.22em;
-      font-size: 11px;
+      letter-spacing: 0.2em;
+      font-size: 10px;
       color: #a78c72;
-      margin-bottom: 10px;
+      margin-bottom: 6px;
     }
 
     h1 {
-      font-size: 40px;
+      font-size: 30px;
       line-height: 1.05;
-      margin-bottom: 16px;
+      margin-bottom: 8px;
     }
 
     .lead {
       font-size: 14px;
-      line-height: 1.6;
+      line-height: 1.55;
       color: #6b5745;
-      max-width: 420px;
-      margin-bottom: 24px;
+      max-width: 360px;
+      margin-bottom: 14px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .pill {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      padding: 5px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(43,34,25,0.12);
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(6px);
     }
 
     .meta-row {
       display: flex;
-      gap: 28px;
+      gap: 18px;
       font-size: 12px;
       color: #6b5745;
     }
@@ -217,41 +221,14 @@
       letter-spacing: 0.12em;
       font-size: 10px;
       color: #a78c72;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
-    /* Home page specials */
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 18px;
-    }
-
-    .pill {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      padding: 6px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(43,34,25,0.12);
-      background: rgba(255,255,255,0.86);
-      backdrop-filter: blur(8px);
-    }
-
-    .price-tag {
-      font-size: 13px;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: baseline;
-      gap: 4px;
-    }
-
-    /* Right-side image card */
+    /* bigger right island */
     .hero-card {
       border-radius: var(--radius-lg);
       background: #fdf7f1;
-      box-shadow: 0 18px 48px rgba(0,0,0,0.16);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.2);
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -259,157 +236,146 @@
     }
 
     .hero-image-wrap {
-      flex: 1;
       position: relative;
-      overflow: hidden;
+      padding: 12px;
+      height: 78%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-image-wrap::before {
+      content: "";
+      position: absolute;
+      inset: 10% 12%;
+      border-radius: 28px;
+      background: radial-gradient(circle at 10% 0%, rgba(255,255,255,0.9), transparent);
+      opacity: 0.85;
+      mix-blend-mode: screen;
     }
 
     .hero-image-wrap img {
-      position: absolute;
-      inset: 0;
+      position: relative;
+      max-width: 100%;
+      max-height: 100%;
       width: 100%;
-      height: 100%;
+      border-radius: 22px;
       object-fit: cover;
-      transform: scale(1.02);
+      display: block;
+      transform: scale(1.01);
+      transition: transform 260ms var(--ease-soft), filter 260ms var(--ease-soft);
+    }
+
+    .hero-card:hover img {
+      transform: scale(1.04);
+      filter: saturate(1.05);
     }
 
     .hero-badge {
       position: absolute;
-      left: 18px;
-      top: 18px;
-      padding: 7px 13px;
+      left: 20px;
+      top: 20px;
+      padding: 6px 12px;
       border-radius: 999px;
-      font-size: 11px;
+      font-size: 10px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      background: rgba(255,255,255,0.86);
+      background: rgba(255,255,255,0.92);
       backdrop-filter: blur(10px);
       color: #6b5745;
     }
 
     .hero-footer {
-      padding: 14px 16px 15px;
+      padding: 9px 14px 11px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       background: #f6efe7;
-    }
-
-    .hero-footer span {
-      font-size: 13px;
-      color: #6b5745;
+      font-size: 12px;
     }
 
     .hero-count {
       border-radius: 999px;
-      padding: 6px 11px;
-      font-size: 11px;
+      padding: 4px 10px;
+      font-size: 10px;
       background: #2b2219;
       color: #fff;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.14em;
     }
 
-    /* Menu page */
+    /* menu + contact reused from before, minor spacing tweaks */
     .grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 10px;
+      gap: 10px;
+      margin-top: 8px;
     }
 
     .card {
-      border-radius: 18px;
-      padding: 12px 14px;
-      background: rgba(255,255,255,0.9);
+      border-radius: 14px;
+      padding: 9px 11px;
+      background: rgba(255,255,255,0.94);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 8px;
     }
 
-    .card-main {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
+    .card-main { display: flex; flex-direction: column; gap: 2px; }
+    .card-title { font-size: 13px; font-weight: 600; }
+    .card-sub { font-size: 11px; color: #8c7763; }
+    .card-price { font-size: 13px; font-weight: 600; white-space: nowrap; }
 
-    .card-title {
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .card-sub {
-      font-size: 11px;
-      color: #8c7763;
-    }
-
-    .card-price {
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    /* Contact page */
     .contact-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-      gap: 18px;
-      margin-top: 12px;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 12px;
+      margin-top: 10px;
       font-size: 13px;
     }
 
     .contact-block {
-      border-radius: 18px;
-      padding: 16px 16px 14px;
-      background: rgba(255,255,255,0.94);
-    }
-
-    .contact-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 6px;
+      border-radius: 14px;
+      padding: 12px 13px;
+      background: rgba(255,255,255,0.96);
     }
 
     .contact-label {
-      font-size: 11px;
+      font-size: 10px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: #a78c72;
     }
 
-    .contact-value {
-      font-weight: 500;
-    }
+    .contact-value { font-weight: 500; margin-top: 2px; }
 
     .hours-list {
-      margin-top: 8px;
+      margin-top: 6px;
       font-size: 12px;
       color: #6b5745;
     }
 
     .map-placeholder {
-      border-radius: 18px;
+      border-radius: 14px;
       background: linear-gradient(135deg, #f5dcc0, #fcead7);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 11px;
+      font-size: 10px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: rgba(43,34,25,0.66);
+      color: rgba(43,34,25,0.7);
     }
 
-    /* Small footer */
     .bottom-strip {
       display: flex;
       justify-content: space-between;
       align-items: center;
       font-size: 11px;
       color: #a78c72;
-      margin-top: 12px;
-      padding-left: 2px;
-      padding-right: 2px;
+      margin-top: 8px;
+      padding: 0 2px;
     }
 
     .bottom-strip a {
@@ -419,40 +385,26 @@
       padding-bottom: 1px;
     }
 
-    /* Responsive changes */
     @media (max-width: 820px) {
       .shell {
         width: 100vw;
         height: 100vh;
         border-radius: 0;
         box-shadow: none;
-        padding: 18px 16px 16px;
       }
-      .content-wrap {
-        margin-top: 18px;
-        border-radius: 20px;
-      }
+      .content-wrap { margin-top: 12px; }
       .page {
         grid-template-columns: minmax(0, 1fr);
-        padding: 20px;
+        padding: 16px 15px;
         overflow-y: auto;
       }
-      html, body {
-        overflow: hidden;
-      }
+      .hero-image-wrap { height: auto; }
     }
 
-    @media (max-width: 520px) {
-      nav {
-        gap: 12px;
-        font-size: 12px;
-      }
-      .cta-strip span {
-        display: none;
-      }
-      h1 {
-        font-size: 30px;
-      }
+    @media (max-width: 540px) {
+      nav { gap: 10px; font-size: 11px; }
+      .cta-strip span { display: none; }
+      h1 { font-size: 26px; }
     }
   </style>
 </head>
@@ -469,40 +421,34 @@
         <button class="nav-link" data-page="contact">Visit</button>
       </nav>
       <div class="cta-strip">
-        <span>Fresh tray in every 20 minutes.</span>
+        <span>Fresh tray every 20 minutes.</span>
         <button onclick="goToContact()">Pre‑order</button>
       </div>
     </header>
 
     <main class="content-wrap">
-      <!-- HOME PAGE -->
+      <!-- HOME -->
       <section class="page active" id="page-home">
         <div>
-          <div class="eyebrow">Small batch · Big swirl energy</div>
+          <div class="eyebrow">Mini buns · Max comfort</div>
           <h1>Mini cinnamon buns, baked to order.</h1>
           <p class="lead">
-            Cinniminis makes warm, bite‑sized cinnamon rolls with real butter,
-            slow‑proved dough, and a cloud‑soft vanilla cream cheese glaze.
-            Perfect for coffee breaks, gifting, or eating the whole tray solo.
+            Warm bite‑sized rolls with slow‑proved dough and a cloud‑soft vanilla cream cheese glaze.
           </p>
 
           <div class="pill-row">
             <div class="pill">Classic glaze</div>
-            <div class="pill">Box of 6 • 12 • 24</div>
+            <div class="pill">6 · 12 · 24 pc</div>
             <div class="pill">Same‑day bake</div>
           </div>
 
           <div class="meta-row">
             <div>
               <div class="meta-label">From</div>
-              <div class="price-tag">
-                <span>Box of 6</span>
-                <span>·</span>
-                <span>$9.50</span>
-              </div>
+              <div>$9.50 · box of 6</div>
             </div>
             <div>
-              <div class="meta-label">Pickup window</div>
+              <div class="meta-label">Pickup</div>
               <div>Mon – Sun · 8am – 4pm</div>
             </div>
           </div>
@@ -510,31 +456,29 @@
 
         <aside class="hero-card">
           <div class="hero-image-wrap">
-            <!-- Use the image you sent me here -->
-            <img src="WhatsApp-Image-2025-12-05-at-22.48.14_1b03d7f3.jpg" alt="Cinniminis cinnamon rolls" />
+            <img src="cinniminis.jpg" alt="Cinniminis cinnamon buns stacked" />
             <div class="hero-badge">House favorite</div>
           </div>
           <div class="hero-footer">
-            <span>Cinniminis with vanilla cream cheese frosting.</span>
-            <span class="hero-count">9 per tower</span>
+            <span>Glazed while still warm.</span>
+            <span class="hero-count">Fresh now</span>
           </div>
         </aside>
       </section>
 
-      <!-- MENU PAGE -->
+      <!-- MENU -->
       <section class="page" id="page-menu">
         <div>
           <div class="eyebrow">Menu</div>
-          <h1>Three sizes, same melt‑in‑your‑mouth swirl.</h1>
+          <h1>Simple sizes. Same swirl.</h1>
           <p class="lead">
-            Every tray is baked in small batches and glazed while still warm.
-            Mix and match boxes or go all‑in on your favourite swirl.
+            Pick a box that fits your moment and add extra glaze if you like it extra drippy.
           </p>
 
           <div class="grid">
             <div class="card">
               <div class="card-main">
-                <span class="card-title">Classic Cinniminis · 6 pc</span>
+                <span class="card-title">Classic · 6 pc</span>
                 <span class="card-sub">Soft rolls, cinnamon sugar, vanilla cream cheese.</span>
               </div>
               <span class="card-price">$9.50</span>
@@ -543,7 +487,7 @@
             <div class="card">
               <div class="card-main">
                 <span class="card-title">Share Box · 12 pc</span>
-                <span class="card-sub">Perfect for offices, brunches, or movie nights.</span>
+                <span class="card-sub">Perfect for teams, brunches, or late‑night movies.</span>
               </div>
               <span class="card-price">$17</span>
             </div>
@@ -551,7 +495,7 @@
             <div class="card">
               <div class="card-main">
                 <span class="card-title">Party Tower · 24 pc</span>
-                <span class="card-sub">Stacked tower like the photo. Includes serving card.</span>
+                <span class="card-sub">Stacked display like the photo. Ready to serve.</span>
               </div>
               <span class="card-price">$32</span>
             </div>
@@ -564,16 +508,11 @@
               <span class="card-price">$3.50</span>
             </div>
           </div>
-
-          <p class="lead" style="margin-top:18px;">
-            Need something custom for an event? Add a note when you pre‑order and the
-            bakery will confirm within a few hours.
-          </p>
         </div>
 
         <aside class="hero-card">
           <div class="hero-image-wrap">
-            <img src="WhatsApp-Image-2025-12-05-at-22.48.14_1b03d7f3.jpg" alt="Cinniminis menu display" />
+            <img src="cinniminis.jpg" alt="Cinniminis menu display" />
             <div class="hero-badge">Today’s batch</div>
           </div>
           <div class="hero-footer">
@@ -583,56 +522,53 @@
         </aside>
       </section>
 
-      <!-- CONTACT PAGE -->
+      <!-- CONTACT -->
       <section class="page" id="page-contact">
         <div>
           <div class="eyebrow">Visit</div>
-          <h1>Warm buns, warmer welcome.</h1>
+          <h1>Warm buns, no waiting.</h1>
           <p class="lead">
-            Swing by for a fresh tray, or place a pre‑order and
-            pick it up without waiting in line.
+            Drop in for a tray or send a pre‑order and pick up on your way past.
           </p>
 
           <div class="contact-grid">
             <div class="contact-block">
-              <div class="contact-row">
-                <div>
-                  <div class="contact-label">Find us</div>
-                  <div class="contact-value">123 Cinnamon Street, Sweet City</div>
-                </div>
-              </div>
+              <div class="contact-label">Find us</div>
+              <div class="contact-value">123 Cinnamon Street, Sweet City</div>
+
               <div class="hours-list">
-                <p>Monday – Friday · 8:00am – 4:00pm</p>
-                <p>Saturday – Sunday · 9:00am – 3:00pm</p>
+                <p>Mon – Fri · 8:00am – 4:00pm</p>
+                <p>Sat – Sun · 9:00am – 3:00pm</p>
               </div>
-              <div class="hours-list" style="margin-top:12px;">
-                <p><span class="contact-label">Order</span></p>
+
+              <div class="hours-list" style="margin-top:8px;">
+                <p class="contact-label">Order</p>
                 <p>Call / WhatsApp: +61 000 000 000</p>
                 <p>Instagram: @cinniminis</p>
               </div>
             </div>
 
             <div class="contact-block map-placeholder">
-              Drop map / embed here
+              MAP / EMBED HERE
             </div>
           </div>
         </div>
 
         <aside class="hero-card">
           <div class="hero-image-wrap">
-            <img src="WhatsApp-Image-2025-12-05-at-22.48.14_1b03d7f3.jpg" alt="Cinniminis store" />
+            <img src="cinniminis.jpg" alt="Cinniminis pickup box" />
             <div class="hero-badge">Pickup ready</div>
           </div>
           <div class="hero-footer">
-            <span>Pre‑orders are held warm for 30 minutes.</span>
-            <span class="hero-count">Tap to pre‑order</span>
+            <span>Pre‑orders held warm for 30 minutes.</span>
+            <span class="hero-count">Tap to order</span>
           </div>
         </aside>
       </section>
     </main>
 
     <footer class="bottom-strip">
-      <span>© <span id="year"></span> Cinniminis. Baked with real butter.</span>
+      <span>© <span id="year"></span> Cinniminis</span>
       <a href="mailto:hello@cinniminis.com">hello@cinniminis.com</a>
     </footer>
   </div>
