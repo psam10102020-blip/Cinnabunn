@@ -1,577 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>CinnaBun Perth – Cookie Shop</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8" />
+  <title>Cinniminis</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      --bg-pink: #ffe7f1;
-      --bg-hero: #fff5f8;
-      --accent: #ff6fa6;
-      --accent-dark: #e05588;
-      --choco: #4b2417;
-      --cream: #fff9f3;
-      --radius-xl: 32px;
-      --radius-lg: 24px;
-      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.12);
+      --bg: #f6efe7;
+      --accent: #f3d1a9;
+      --text: #2b2219;
+      --white: #ffffff;
+      --shadow: 0 16px 40px rgba(0,0,0,0.12);
+      --radius-lg: 22px;
+      --transition-fast: 220ms ease-out;
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+                   "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
     }
 
     body {
-      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #ffe7f1 0, #fff7f2 40%, #ffffff 85%);
-      color: var(--choco);
-      line-height: 1.5;
-      overflow-x: hidden;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     /* Layout shell */
-    .page-wrapper {
-      min-height: 100vh;
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 24px 18px 40px;
+    .shell {
+      width: min(1120px, 100vw - 40px);
+      height: min(680px, 100vh - 40px);
+      background: var(--white);
+      border-radius: 32px;
+      box-shadow: var(--shadow);
+      padding: 26px 32px 32px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
     }
 
     /* Header */
-    .site-header {
+    .header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 28px;
-    }
-
-    .logo-block {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .logo-circle {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 10%, #ffe7f1, #ff6fa6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 22px;
-      color: #ffffff;
-      box-shadow: 0 8px 20px rgba(255, 111, 166, 0.55);
-      overflow: hidden;
-    }
-
-    /* If using an image logo:
-       <div class="logo-circle">
-         <img src="logo.png" alt="CinnaBun Perth logo">
-       </div>
-    */
-    .logo-circle img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .brand-lines {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .brand-name {
-      font-weight: 700;
-      font-size: 20px;
-    }
-
-    .brand-tagline {
-      font-size: 13px;
-      color: #8a5a43;
-    }
-
-    .main-nav {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      font-size: 14px;
-    }
-
-    .main-nav a {
-      padding: 6px 10px;
-      border-radius: 999px;
-      transition: background 0.18s, color 0.18s, box-shadow 0.18s;
-    }
-
-    .main-nav a:hover {
-      background: #ffffff;
-      color: var(--accent-dark);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-    }
-
-    /* Hero */
-    .hero {
-      background: var(--bg-hero);
-      border-radius: var(--radius-xl);
-      padding: 32px 28px;
-      box-shadow: var(--shadow-soft);
-      display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-      gap: 28px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .hero-decor {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.35;
-      background:
-        radial-gradient(circle at 10% 0, rgba(255, 255, 255, 0.6) 0, transparent 55%),
-        radial-gradient(circle at 90% 100%, rgba(255, 214, 229, 0.7) 0, transparent 60%);
-      z-index: 0;
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-      display: contents;
-    }
-
-    /* Left hero content */
-    .hero-copy {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 12px;
-    }
-
-    .hero-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      background: #ffffff;
-      color: var(--accent-dark);
-      padding: 4px 12px;
-      border-radius: 999px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-      width: fit-content;
-    }
-
-    .hero-pill-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
-
-    .hero-title {
-      font-size: clamp(2.1rem, 3.1vw, 2.8rem);
-      line-height: 1.1;
-    }
-
-    .hero-highlight {
-      color: var(--accent-dark);
-    }
-
-    .hero-sub {
-      font-size: 15px;
-      color: #845440;
-      max-width: 420px;
-    }
-
-    .hero-points {
-      list-style: none;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px 16px;
-      margin-top: 6px;
-      font-size: 13px;
-    }
-
-    .hero-points li::before {
-      content: "•";
-      margin-right: 6px;
-      color: var(--accent-dark);
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 10px;
-    }
-
-    .btn-primary {
-      padding: 10px 20px;
-      border-radius: 999px;
-      border: none;
-      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-      color: white;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 14px 30px rgba(224, 85, 136, 0.6);
-      transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      filter: brightness(1.03);
-      box-shadow: 0 18px 38px rgba(224, 85, 136, 0.7);
-    }
-
-    .btn-ghost {
-      padding: 10px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(132, 84, 64, 0.25);
-      background: rgba(255, 255, 255, 0.7);
-      color: #5a3b2a;
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background 0.12s, border-color 0.12s;
-    }
-
-    .btn-ghost:hover {
-      background: #ffffff;
-      border-color: var(--accent);
-    }
-
-    .hero-meta {
-      margin-top: 8px;
-      font-size: 12px;
-      color: #8a5a43;
-    }
-
-    /* Right hero visuals – overlapping cards */
-    .hero-visual {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .bun-stack {
-      position: relative;
-      width: 100%;
-      max-width: 340px;
-      height: 260px;
-    }
-
-    .bun-card {
-      position: absolute;
-      width: 72%;
-      max-width: 240px;
-      border-radius: var(--radius-lg);
-      background: var(--cream);
-      box-shadow: var(--shadow-soft);
-      overflow: hidden;
-      padding: 12px 12px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .bun-card-main {
-      top: 4%;
-      left: 6%;
-      transform: rotate(-5deg);
+      gap: 32px;
       z-index: 2;
     }
 
-    .bun-card-alt {
-      bottom: -2%;
-      right: -2%;
-      transform: rotate(6deg);
-      z-index: 1;
-      opacity: 0.96;
-      background: #fff8e9;
-    }
-
-    .bun-image {
-      position: relative;
-      border-radius: 18px;
-      overflow: hidden;
-      height: 140px;
-      background: conic-gradient(
-        from 210deg,
-        #ffead5,
-        #ffc8a1,
-        #ff9b7c,
-        #f16c5b,
-        #8b4513,
-        #ffead5
-      );
-    }
-
-    /* Simulated icing swirl */
-    .bun-icing {
-      position: absolute;
-      inset: 14% 12%;
-      border-radius: 999px;
-      background: radial-gradient(circle at 10% 0, #ffffff, #ffeef4);
-      box-shadow: 0 0 28px rgba(255, 255, 255, 0.8) inset;
-    }
-
-    .sprinkle {
-      position: absolute;
-      width: 6px;
-      height: 14px;
-      border-radius: 999px;
-      background: #ff6fa6;
-      opacity: 0.75;
-    }
-
-    .sprinkle:nth-child(1) { top: 20%; left: 22%; transform: rotate(15deg); }
-    .sprinkle:nth-child(2) { top: 35%; right: 18%; background: #ffd25e; transform: rotate(-20deg); }
-    .sprinkle:nth-child(3) { bottom: 20%; left: 28%; background: #7dd6ff; transform: rotate(10deg); }
-
-    .bun-title {
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       font-size: 14px;
-      font-weight: 600;
     }
 
-    .bun-note {
-      font-size: 11px;
-      color: #86523a;
-    }
-
-    .bun-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-      margin-top: 2px;
-    }
-
-    .tag {
-      font-size: 10px;
-      padding: 3px 7px;
+    .logo-mark {
+      width: 32px;
+      height: 32px;
       border-radius: 999px;
-      background: #ffffff;
-      border: 1px solid rgba(255, 182, 193, 0.7);
-      color: #8b2c54;
-    }
-
-    .bun-footer {
+      background: radial-gradient(circle at 30% 20%, #fff7f0, #f0c9a0);
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      font-size: 11px;
-      margin-top: 4px;
-    }
-
-    .price {
-      font-weight: 600;
-      color: #4b2417;
-    }
-
-    .mini-text {
-      font-size: 10px;
-      color: #93624a;
-    }
-
-    /* Contact strip */
-    .contact-strip {
-      margin-top: 22px;
-      border-radius: 999px;
-      background: #fff5ea;
-      padding: 10px 16px;
-      font-size: 13px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
       justify-content: center;
-      align-items: center;
-      overflow: hidden;
+      font-size: 18px;
+      font-weight: 700;
     }
 
-    .contact-strip span {
-      white-space: nowrap;
+    nav {
       display: flex;
+      gap: 20px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    nav button {
+      appearance: none;
+      border: none;
+      background: transparent;
+      color: #8c7763;
+      padding: 6px 0;
+      cursor: pointer;
+      position: relative;
+      transition: color var(--transition-fast);
+    }
+
+    nav button::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: #2b2219;
+      transition: width var(--transition-fast);
+    }
+
+    nav button.active {
+      color: #2b2219;
+    }
+
+    nav button.active::after {
+      width: 100%;
+    }
+
+    .cta-strip {
+      display: flex;
+      gap: 12px;
       align-items: center;
-      gap: 4px;
+      font-size: 12px;
     }
 
-    /* Responsive */
-    @media (max-width: 860px) {
-      .site-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 14px;
-      }
-
-      .main-nav {
-        font-size: 13px;
-        flex-wrap: wrap;
-      }
-
-      .hero {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-visual {
-        order: -1;
-      }
-
-      .bun-stack {
-        max-width: 320px;
-        height: 260px;
-        margin: 0 auto 4px;
-      }
+    .cta-strip span {
+      color: #8c7763;
     }
 
-    @media (max-width: 520px) {
-      .page-wrapper {
-        padding-inline: 14px;
-      }
-
-      .hero {
-        padding: 24px 18px;
-        border-radius: 24px;
-      }
-
-      .hero-points {
-        grid-template-columns: 1fr;
-      }
-
-      .bun-stack {
-        height: 240px;
-      }
-
-      .bun-card {
-        width: 78%;
-      }
+    .cta-strip button {
+      border-radius: 999px;
+      border: none;
+      padding: 8px 16px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      background: #2b2219;
+      color: #fff;
+      cursor: pointer;
+      transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
     }
-  </style>
-</head>
-<body>
-  <div class="page-wrapper">
-    <!-- Header with circular logo -->
-    <header class="site-header">
-      <div class="logo-block">
-        <!-- Replace “CB” with an <img> inside this div if you have a logo file -->
-        <div class="logo-circle">CB</div>
-        <div class="brand-lines">
-          <div class="brand-name">CinnaBun Perth</div>
-          <div class="brand-tagline">Soft. Sticky. Sweet.</div>
-        </div>
-      </div>
 
-      <nav class="main-nav">
-        <a href="#menu">Menu</a>
-        <a href="#specials">Specials</a>
-        <a href="#about">About</a>
-        <a href="#order">Order Online</a>
-      </nav>
-    </header>
+    .cta-strip button:hover {
+      background: #4a3625;
+      transform: translateY(-1px);
+      box-shadow: 0 14px 32px rgba(0,0,0,0.22);
+    }
 
-    <!-- Hero section -->
-    <section class="hero">
-      <div class="hero-decor"></div>
-      <div class="hero-inner">
-        <!-- Left: text -->
-        <div class="hero-copy">
-          <div class="hero-pill">
-            <span class="hero-pill-dot"></span>
-            Perth’s most addictive cinnamon buns
-          </div>
+    /* Main content area */
+    .content-wrap {
+      flex: 1;
+      display: flex;
+      margin-top: 26px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 26px;
+      background: linear-gradient(135deg, #fdf4ea, #f8e1c7);
+    }
 
-          <h1 class="hero-title">
-            Fresh, fun, <span class="hero-highlight">frosted</span> buns.
-          </h1>
+    .page {
+      position: absolute;
+      inset: 0;
+      padding: 26px 26px 26px 26px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 24px;
+      opacity: 0;
+      transform: translateX(40px) translateY(10px);
+      pointer-events: none;
+      transition: opacity 340ms ease-out, transform 340ms ease-out;
+    }
 
-          <p class="hero-sub">
-            Soft, warm cinnamon buns baked daily, drenched in cream cheese frosting, and finished with playful sprinkles.
-          </p>
+    .page.active {
+      opacity: 1;
+      transform: translateX(0) translateY(0);
+      pointer-events: auto;
+    }
 
-          <ul class="hero-points">
-            <li>Same‑day baking for every box.</li>
-            <li>Mini buns for parties and events.</li>
-            <li>Hand‑rolled dough and rich cinnamon swirl.</li>
-            <li>Custom toppings and flavours on request.</li>
-          </ul>
+    /* Typography */
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 11px;
+      color: #a78c72;
+      margin-bottom: 10px;
+    }
 
-          <div class="hero-actions">
-            <button class="btn-primary" id="order-now">Order a box</button>
-            <button class="btn-ghost" id="view-menu">View today’s menu</button>
-          </div>
+    h1 {
+      font-size: 40px;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
 
-          <p class="hero-meta">
-            Free delivery on orders over $40 within Perth metro.
-          </p>
-        </div>
+    .lead {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #6b5745;
+      max-width: 420px;
+      margin-bottom: 24px;
+    }
 
-        <!-- Right: overlapping bun “images” -->
-        <div class="hero-visual">
-          <div class="bun-stack">
-            <!-- Main card -->
-            <article class="bun-card bun-card-main">
-              <div class="bun-image">
-                <div class="bun-icing"></div>
-                <!-- Decorative sprinkles inside icing -->
-                <span class="sprinkle"></span>
-                <span class="sprinkle"></span>
-                <span class="sprinkle"></span>
-              </div>
-              <div class="bun-title">Signature Cinnamon Box</div>
-              <div class="bun-note">6 mega buns with extra‑thick frosting.</div>
-              <div class="bun-tags">
-                <span class="tag">Best seller</span>
-                <span class="tag">Fresh today</span>
-              </div>
-              <div class="bun-footer">
-                <span class="price">$28 / box</span>
-                <span class="mini-text">Feeds 4–6 sweet tooths</span>
-              </div>
-            </article>
+    .meta-row {
+      display: flex;
+      gap: 28px;
+      font-size: 12px;
+      color: #6b5745;
+    }
 
-            <!-- Secondary card -->
-            <article class="bun-card bun-card-alt">
-              <div class="bun-image">
-                <div class="bun-icing"></div>
-                <span class="sprinkle"></span>
-                <span class="sprinkle"></span>
-                <span class="sprinkle"></span>
-              </div>
-              <div class="bun-title">Mini Party Bites</div>
-              <div class="bun-note">24 bite‑size buns in assorted flavours.</div>
-              <div class="bun-tags">
-                <span class="tag">Party favourite</span>
-                <span class="tag">Kid‑approved</span>
-              </div>
-              <div class="bun-footer">
-                <span class="price">$36 / tray</span>
-                <span class="mini-text">Perfect for celebrations</span>
-              </div>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
+    .meta-label {
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 10px;
+      color: #a78c72;
+      margin-bottom: 4px;
+    }
 
-    <!-- Contact strip -->
-    <div class="contact-strip" id="order">
-      <span>📞 <strong>Call:</strong> 0400 000 000</span>
-      <span>📧 <strong>Email:</strong> john.doe@mail.com</span>
-      <span>📍 <strong>Perth, WA</strong></span>
-    </div>
-  </div>
-</body>
-</html>
+    /* Home page specials */
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .pill {
+      font
